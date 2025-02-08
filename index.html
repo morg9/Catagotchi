@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="teepee-smile.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Virtual Pet Simulator</title>
+</head>
+<body>
+    <div class="stats-box">
+        <h3>Cat Stats</h3>
+        <div>
+            <img id="stats-image" src="big-mystery.png" alt="Mystery Cat" width="100">
+        </div>
+        <p id="stat-hunger">Hunger: 100</p>
+        <p id="stat-happiness">Happiness: 100</p>
+        <p id="stat-energy">Energy: 100</p>
+        <button onclick="location.reload()">Restart</button>
+        <button onclick="">Save</button>
+    </div>
+    <div class="content-container">
+        <div id="start-screen">
+            <h1>Catagotchi</h1>
+            <h4>Choose Your Campus Cat</h4>
+            <div>
+                <img id="select_img" src="big-teepee.png" alt="Teepee" width="100">
+                <button onclick="startGame('Teepee')">Teepee</button>
+            </div>
+            <div>
+                <img id="select_img" src="big-cheese.png" alt="Cheese" width="100">
+                <button onclick="startGame('Cheese')">Cheese</button>
+            </div>
+        </div>
+
+        <div id="game-screen" class="hidden">
+            <div class="game-container">
+                <h2 id="pet-name"></h2>
+                <div class="pet-container">
+                    <div class="background-container" id="background-container">
+                        <img id="background-image" src="tamagotchi-frame.png" alt="Background" width="375" height="500">
+                        <div class="text-box" id="text-box">Your pet is happy and healthy!</div>
+                    </div>
+                </div>
+                <div class="needs">
+                    <div>Hunger <div class="bar"><div id="hunger-bar" class="bar-fill"></div></div></div>
+                    <div>Happiness <div class="bar"><div id="happiness-bar" class="bar-fill"></div></div></div>
+                    <div>Energy <div class="bar"><div id="energy-bar" class="bar-fill"></div></div></div>
+                </div>
+                <button onclick="feedPet()">Feed</button>
+                <button onclick="playWithPet()">Play</button>
+                <button onclick="restPet()">Rest</button>
+            </div>
+        </div>
+
+        <div id="lose-screen" class="hidden">
+            <h1>Game Over</h1>
+            <h2>Your cat has left forever...</h2>
+            <button onclick="location.reload()">Play Again</button>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
