@@ -101,34 +101,58 @@ button:active {
 .stats-box {
     width: 300px;
     height: 100vh;
-    background-color: #c4e2af;
-    border: 1px solid #000000;
+    background-color: #c4e2af; /* Lighter green background */
+    border: 2px solid #2d4829; /* Darker green border */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
+    justify-content: center;
+    align-items: center;
     padding-top: 20px;
     position: absolute;
     top: 0px;
     left: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
+
 .stats-box h3 {
     margin: 0 0 10px 0;
     font-size: 30px;
     margin-bottom: 25px;
+    color: #2d4829; /* Darker green text */
 }
+
+#stats-image {
+    width: 200px;
+    border: 2px solid #2d4829; /* Darker green border */
+    background-color: white;
+    border-radius: 10px; /* Rounded corners */
+    margin-bottom: 20px; /* Space below the image */
+}
+
 .stats-box p {
     margin: 5px 0;
     font-size: 20px;
     margin-bottom: 20px;
+    color: #2d4829; /* Darker green text */
 }
+
 .stats-box button {
-    width: 80%; /* Adjusted width to fit inside the stats box */
-    margin: 10px auto; /* Center the buttons */
+    width: 80%;
+    margin: 10px auto;
     margin-top: 20px;
     padding: 10px;
     font-size: 14px;
-    display: block; /* Ensure buttons are block elements */
+    display: block;
+    background-color: #94cf8b; /* Matching button color */
+    color: #2d4829; /* Darker green text */
+    border: 2px solid #2d4829; /* Darker green border */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.stats-box button:hover {
+    background-color: #76b76e; /* Slightly darker green on hover */
 }
 
 .content-container {
@@ -140,6 +164,7 @@ button:active {
     align-items: center; /* Center vertically */
     text-align: center; /* Ensure text is centered */
     background-color: #c4e2af;
+    border: 2px solid black; /* Corrected border property */
 }
 
 #background-image {
@@ -154,5 +179,36 @@ button:active {
     z-index: 0;
     position:absolute;
     animation: speed-up 0.5s infinite;
+}
+
+.selection-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+.selection-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #94cf8b;
+    color: #3f7c36;
+    border: 2px solid #3f7c36;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.selection-button img {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+.selection-button:hover {
+    background-color: #76b76e; /* Slightly darker green on hover */
 }
 

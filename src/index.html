@@ -13,9 +13,9 @@
 <body>
     <audio id="background-music" src="../sounds/spring_thing.mp3" loop></audio>
     <div class="stats-box">
-        <h3>Cat Stats</h3>
+        <h3 id="stat-name">Cat Stats</h3>
         <div>
-            <img id="stats-image" src="../images/big-mystery.png" alt="Mystery Cat" width="200">
+            <img id="stats-image" src="../images/big-mystery.png" alt="Mystery Cat">
         </div>
         <p id="stat-hunger">Hunger: 100</p>
         <p id="stat-happiness">Happiness: 100</p>
@@ -53,9 +53,9 @@
                     <div>Happiness <div class="bar"><div id="happiness-bar" class="bar-fill"></div></div></div>
                     <div>Energy <div class="bar"><div id="energy-bar" class="bar-fill"></div></div></div>
                 </div>
-                <button onclick="feedPet()">Feed</button>
-                <button onclick="playWithPet()">Play</button>
-                <button onclick="restPet()">Rest</button>
+                <button onclick="feedPet()" class="action-button">Feed</button>
+                <button onclick="playWithPet()" class="action-button">Play</button>
+                <button onclick="restPet()" class="action-button">Rest</button>
             </div>
         </div>
 
