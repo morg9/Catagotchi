@@ -6,22 +6,35 @@ let happinessDecay = 3;
 let energyDecay = 2;
 
 function startGame(name) {
+    const sound = document.getElementById("background-music");
     petName = name;
     document.getElementById("pet-name").textContent = name;
-    document.getElementById("stats-image").src = name === "Teepee" ? "big-teepee.png" : "big-cheese.png";
+    document.getElementById("stats-image").src = name === "Teepee" ? "../images/big-teepee.png" : "../images/big-cheese.png";
     document.getElementById("start-screen").classList.add("hidden");
     document.getElementById("game-screen").classList.remove("hidden");
+    
+    // Play background music
+    const backgroundMusic = document.getElementById("background-music");
+    backgroundMusic.play();
     
     // Adjust decay rates based on pet selection
     if (name === "Teepee") {
         energyDecay = 4; // Teepee gets sleepy faster
         happinessDecay = 3;
+        document.getElementById("pet-animation").src = "../animations/TP_blink.gif"; // Set Teepee GIF
     } else {
         energyDecay = 2;
         happinessDecay = 5; // Cheese needs to play more
+        document.getElementById("pet-animation").src = "../animations/cheese_blink.gif"; // Set Cheese GIF
     }
     
     interval = setInterval(updateNeeds, 2000);
+}
+
+function playSoundAndStartGame(name) {
+    const sound = document.getElementById("select-sound");
+    sound.play();
+    sound.onended = () => startGame(name);
 }
 
 function updateNeeds() {

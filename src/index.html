@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="teepee-smile.png">
+    <link rel="icon" type="image/x-icon" href="../images/teepee-smile.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css">
     <title>Virtual Pet Simulator</title>
 </head>
 <body>
+    <audio id="background-music" src="../sounds/spring_thing.mp3" loop></audio>
     <div class="stats-box">
         <h3>Cat Stats</h3>
         <div>
-            <img id="stats-image" src="big-mystery.png" alt="Mystery Cat" width="100">
+            <img id="stats-image" src="../images/big-mystery.png" alt="Mystery Cat" width="200">
         </div>
         <p id="stat-hunger">Hunger: 100</p>
         <p id="stat-happiness">Happiness: 100</p>
@@ -22,17 +23,18 @@
         <button onclick="location.reload()">Restart</button>
         <button onclick="">Save</button>
     </div>
+    <audio id="select-sound" src="../sounds/meowing_cat.mp3"></audio>
     <div class="content-container">
         <div id="start-screen">
             <h1>Catagotchi</h1>
             <h4>Choose Your Campus Cat</h4>
             <div>
-                <img id="select_img" src="big-teepee.png" alt="Teepee" width="100">
-                <button onclick="startGame('Teepee')">Teepee</button>
+                <img id="select_img" src="../images/big-teepee.png" alt="Teepee" width="100">
+                <button onclick="playSoundAndStartGame('Teepee')">Teepee</button>
             </div>
             <div>
-                <img id="select_img" src="big-cheese.png" alt="Cheese" width="100">
-                <button onclick="startGame('Cheese')">Cheese</button>
+                <img id="select_img" src="../images/big-cheese.png" alt="Cheese" width="100">
+                <button onclick="playSoundAndStartGame('Cheese')">Cheese</button>
             </div>
         </div>
 
@@ -41,7 +43,8 @@
                 <h2 id="pet-name"></h2>
                 <div class="pet-container">
                     <div class="background-container" id="background-container">
-                        <img id="background-image" src="tamagotchi-frame.png" alt="Background" width="375" height="500">
+                        <img id="background-image" src="../images/tamagotchi-frame.png" alt="Background" width="375" height="500">
+                        <img id="pet-animation" src="../animations/TP_blink.gif" alt="Cat Animation" width="157.5" height="157.5">
                         <div class="text-box" id="text-box">Your pet is happy and healthy!</div>
                     </div>
                 </div>
@@ -62,6 +65,6 @@
             <button onclick="location.reload()">Play Again</button>
         </div>
     </div>
-    <script src="scripts.js"></script>
+    <script src="./scripts.js"></script>
 </body>
 </html>
