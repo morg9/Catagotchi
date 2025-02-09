@@ -6,6 +6,35 @@ let happinessDecay = 3;
 let energyDecay = 2;
 let isStatAnimating = { hunger: false, happiness: false, energy: false };
 
+const randomEvents = [
+    { text: "A bird stole all of the cat’s food!", stat: "hunger", newValue: 20 },
+    { text: "The cat had a nightmare and lost energy!", stat: "energy", newValue: 20 },
+    { text: "A loud noise scared the cat, making it sad!", stat: "happiness", newValue: 20 },
+    { text: "Someone gave the cat extra food! Lucky!", stat: "hunger", newValue: 100 }, // Good event!
+    { text: "The cat found a comfy spot and napped well!", stat: "energy", newValue: 100 } // Another good event!
+];
+
+function triggerRandomEvent() {
+    let event = randomEvents[Math.floor(Math.random() * randomEvents.length)]; // Pick a random event
+
+    pet[event.stat] = Math.max(pet[event.stat] - 20, 0); // Reduce stat but don't go below 0
+
+    let textBox = document.getElementById("text-box");
+    textBox.textContent = event.text;
+
+    // Reset text-box after 5 seconds
+    setTimeout(() => {
+        textBox.textContent = "";
+    }, 5000);
+
+    updateBars(); 
+}
+
+
+function startRandomEvents() {
+    setInterval(triggerRandomEvent, 10000); // Trigger a new event every 15 seconds
+}
+
 function startGame(name) {
     const sound = document.getElementById("background-music");
     petName = name;
@@ -31,6 +60,7 @@ function startGame(name) {
     }
     
     interval = setInterval(updateNeeds, 2000);
+    startRandomEvents();
 }
 
 function playSoundAndStartGame(name) {
@@ -52,14 +82,14 @@ function updateNeeds() {
 function disableButtons() {
     document.querySelectorAll(".action-button").forEach(button => {
         button.disabled = true;
-        button.style.opacity = "0.5"; // Optional: Makes buttons look disabled
+        button.style.opacity = "0.5";
     });
 }
 
 function enableButtons() {
     document.querySelectorAll(".action-button").forEach(button => {
         button.disabled = false;
-        button.style.opacity = "1"; // Restore normal appearance
+        button.style.opacity = "1";
     });
 }
 
@@ -67,11 +97,11 @@ function isSleeping() {
     return pet.energy < 25 && petName === "Teepee";
 }
 
-let isAnimating = false; // Prevent multiple presses
+let isAnimating = false;
 
 function animateStatIncrease(stat, increment, maxStat, barElement) {
-    if (isStatAnimating[stat]) return; // Prevent multiple presses for the same stat
-    isStatAnimating[stat] = true; // Mark this specific stat as animating
+    if (isStatAnimating[stat]) return; 
+    isStatAnimating[stat] = true; 
     disableButtons();
 
     let steps = 20;
@@ -92,7 +122,7 @@ function animateStatIncrease(stat, increment, maxStat, barElement) {
         if (step >= steps) {
             clearInterval(interval);
             setTimeout(() => {
-                isStatAnimating[stat] = false; // Resume decay for this stat only
+                isStatAnimating[stat] = false;
                 enableButtons();
             }, 500);
         }
@@ -113,25 +143,16 @@ function updateBars() {
     document.getElementById("stat-happiness").textContent = `Happiness: ${pet.happiness}`;
     document.getElementById("stat-energy").textContent = `Energy: ${pet.energy}`;
 
-    let textBox = document.getElementById("text-box");
+    let statusText = "Happy and healthy!"; // Default message
+
     if (pet.hunger < 50) {
-        textBox.textContent = `${petName} is hungry`;
+        statusText = `${petName} is hungry`;
     } else if (pet.happiness < 50) {
-        textBox.textContent = `${petName} is bored`;
+        statusText = `${petName} is bored`;
     } else if (pet.energy < 50) {
-        textBox.textContent = `${petName} is tired`;
-    } else {
-        textBox.textContent = "Your pet is happy and healthy!";
+        statusText = `${petName} is tired`;
     }
-
-    // Play TP_sad.gif if happiness drops to 10%
-    if (petName === "Teepee" && pet.happiness <= 50) {
-        document.getElementById("pet-animation").src = "../animations/TP_sad.gif";
-    }
-
-    if (petName === "Teepee" && pet.energy <= 50) {
-        document.getElementById("pet-animation").src = "../animations/TP_yawn.gif";
-    }
+    document.getElementById("stat-status").textContent = `Status: ${statusText}`;
 }
 
 
@@ -158,6 +179,10 @@ function playWithPet() {
 function restPet() {
     if (petName === "Teepee") {
         document.getElementById("pet-animation").src = "../animations/TP_sleep.gif";
+
+        setTimeout(() => {
+            document.getElementById("pet-animation").src = "../animations/TP_blink.gif";
+        }, 2000);
     }
     animateStatIncrease("energy", 20, 100, document.getElementById("energy-bar"));
 }
